@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Products | BRUVÉL</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Our Products</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+    </nav>
+  </header>
+
+  <main class="product-grid">
+    {% for product in products %}
+      <div class="product-card">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.price }}</p>
+        <a href="/order?product={{ product.name }}"><button>Buy Now</button></a>
+      </div>
+    {% endfor %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order | BRUVÉL</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Order Now</h1>
+  </header>
+
+  <main class="order-form">
+    <form method="POST">
+      <input type="hidden" name="product" value="{{ product_name }}">
+      
+      <label>Product:</label>
+      <p><strong>{{ product_name }}</strong></p>
+
+      <label>Your Name:</label>
+      <input type="text" name="name" required>
+
+      <label>Phone Number:</label>
+      <input type="text" name="phone" required>
+
+      <label>Delivery Address:</label>
+      <textarea name="address" required></textarea>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+</body>
+</html>
