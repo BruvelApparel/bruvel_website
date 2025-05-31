@@ -5,19 +5,41 @@ import os
 app = Flask(__name__)
 
 # Sample product list
-products = [
-    {"name": "Premium T shirt", "price": "430 BDT", "image": "/static/tshirt1.png"},
-    {"name": "Minimal Hoodie", "price": "1490 BDT", "image": "/static/hoodie1.jpg"},
-    {"name": "Streetwear Cap", "price": "490 BDT", "image": "/static/cap1.jpg"}
+dummy_products = [
+    {
+        "id": 1,
+        "name": "Premium T-Shirt - Sky Blue",
+        "price": 649,
+        "old_price": 850,
+        "image": "images/sky_blue_tshirt.jpg",
+        "description": "Smooth and comfortable premium t-shirt."
+    },
+    {
+        "id": 2,
+        "name": "Designer Polo - Navy",
+        "price": 1140,
+        "old_price": 1490,
+        "image": "images/navy_polo.jpg",
+        "description": "Stylish designer polo shirt."
+    },
+    {
+        "id": 3,
+        "name": "Streetwear Cap",
+        "price": 490,
+        "old_price": 590,
+        "image": "images/streetwear_cap.jpg",
+        "description": "Bold streetwear cap for daily style."
+    }
 ]
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', products=dummy_products)
 
-@app.route('/products')
-def product_page():
-    return render_template('products.html', products=products)
+@app.route('/product/<int:product_id>')
+def product_detail(product_id):
+    product = next((item for item in dummy_products if item["id"] == product_id), None)
+    return render_template('product.html', product=product)
 
 @app.route('/order', methods=['GET', 'POST'])
 def order():
